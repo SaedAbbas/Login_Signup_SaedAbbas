@@ -1,30 +1,108 @@
 import 'package:flutter/material.dart';
-import 'package:G:/Courses/flutter-learning/assigment_2/lib/login_page.dart';
+import 'package:flutter/widgets.dart';
+import 'package:login_page_day_23/animation/FadeAnimation.dart';
+import 'package:login_page_day_23/login.dart';
+import 'package:login_page_day_23/signup.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: GettingStarted(),
-    theme: ThemeData(
-      
-      primaryColor: Color(0xFF293b72),
-      accentColor: Color(0xFFff2e7a),
-      textTheme: TextTheme(
-        display3: TextStyle(
-            color: Colors.white,
-            letterSpacing: 1.4,
-            fontWeight: FontWeight.w800,
-            fontSize: 30.0),
-        body1:
-            TextStyle(color: Colors.white, fontSize: 14.0, letterSpacing: 1.4),
-      ),
-    ),
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    )
+  );
 }
 
-class GettingStarted extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  FadeAnimation(1, Text("Welcome", style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30
+                  ),)),
+                  SizedBox(height: 20,),
+                  FadeAnimation(1.2, Text("This App is Made by Saed Abbas , Login and Sign Up page", 
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 15
+                  ),)),
+                ],
+              ),
+              FadeAnimation(1.4, Container(
+                height: MediaQuery.of(context).size.height / 3,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/illustration.png')
+                  )
+                ),
+              )),
+              Column(
+                children: <Widget>[
+                  FadeAnimation(1.5, MaterialButton(
+                    minWidth: double.infinity,
+                    height: 60,
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                    },
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    child: Text("Login", style: TextStyle(
+                      fontWeight: FontWeight.w600, 
+                      fontSize: 18
+                    ),),
+                  )),
+                  SizedBox(height: 20,),
+                  FadeAnimation(1.6, Container(
+                    padding: EdgeInsets.only(top: 3, left: 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border(
+                        bottom: BorderSide(color: Colors.black),
+                        top: BorderSide(color: Colors.black),
+                        left: BorderSide(color: Colors.black),
+                        right: BorderSide(color: Colors.black),
+                      )
+                    ),
+                    child: MaterialButton(
+                      minWidth: double.infinity,
+                      height: 60,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
+                      },
+                      color: Colors.yellow,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      child: Text("Sign up", style: TextStyle(
+                        fontWeight: FontWeight.w600, 
+                        fontSize: 18
+                      ),),
+                    ),
+                  ))
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
