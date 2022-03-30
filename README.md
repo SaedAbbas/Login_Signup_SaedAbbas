@@ -1,2 +1,2 @@
-This app is made bu Saed Abbas
+This app is made by Saed Abbas
 
